@@ -36,7 +36,17 @@ Route::get('/',function (){
     return view('index',compact('nombre','apellidos','opciones'));
 });
 
+//Petición get de todas las pistas
+Route::get('/pista',"PistaController@index");
+Route::get('/pista/{id}',"PistaController@show");
 
-Route::get('/pista',function(){
-    return view('pistas');
-});
+Route::post('/pista',"PistaController@store");
+Route::put('/pista',"PistaController@update");
+Route::patch('/pista',"PistaController@update");
+Route::delete('/pista',"PistaController@destroy");
+
+Route::get('/crear-pista',"PistaController@create");
+Route::get('/modificar-pista',"PistaController@edit");
+
+Route::get('/login',"SesionController@index");
+

@@ -14,7 +14,7 @@ class PistaController extends Controller
      */
     public function index()
     {
-        //
+        return Pista::all();
     }
 
     /**
