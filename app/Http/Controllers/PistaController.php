@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pista;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PistaController extends Controller
 {
@@ -14,7 +15,8 @@ class PistaController extends Controller
      */
     public function index()
     {
-        $pistas=Pista::all();
+        //$this->crearPistas();
+        $pistas = Pista::all();
         return view("pistas.index",['pistas'=>$pistas]);
     }
 
@@ -25,7 +27,7 @@ class PistaController extends Controller
      */
     public function create()
     {
-        //
+        return view('pistas.create');
     }
 
     /**
@@ -36,7 +38,30 @@ class PistaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //var_dump($request);
+        $this->validate($request,[
+            'luz'=>'boolean',
+            'tipoPista'=>Rule::in(['Individual', 'Dobles']),
+            'cubierta' =>'boolean',
+            'disponible'=>'boolean',
+            'precioLuz'=> 'required|decimal:0,2'
+        ]);
+
+
+        $pista=Pista::create([
+            'luz'=>$request['luz'] ?? 0,
+            'tipoPista'=>$request['tipoPista'],
+            'cubierta'=>$request['cubierta'] ?? 0,
+            'disponible'=>$request['disponible'] ?? 0,
+            'precioLuz'=>$request['precioLuz']
+        ]);
+        if ($pista){
+            return redirect('/pista');
+        }else{
+            return back();
+        }
+
+
     }
 
     /**
@@ -47,7 +72,8 @@ class PistaController extends Controller
      */
     public function show(Pista $pista)
     {
-        //
+        echo "La pista: ".$pista->id;
+        return view('pistas.show',compact('pista'));
     }
 
     /**
@@ -58,7 +84,7 @@ class PistaController extends Controller
      */
     public function edit(Pista $pista)
     {
-        //
+        return view('pistas.edit',compact('pista'));
     }
 
     /**
@@ -68,9 +94,24 @@ class PistaController extends Controller
      * @param  \App\Models\Pista  $pista
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, Pista $pista)
     {
-        //
+        $this->validate($request,[
+            'luz'=>'boolean',
+            'tipoPista'=>Rule::in(['Individual', 'Dobles']),
+            'cubierta' =>'boolean',
+            'disponible'=>'boolean',
+            'precioLuz'=> 'required|decimal:0,2'
+        ]);
+
+        $pista->luz=$request['luz'];
+        $pista->tipoPista=$request['tipoPista'];
+        $pista->cubierta=$request['cubierta'];
+        $pista->disponible=$request['disponible'];
+        $pista->precioLuz=$request['precioLuz'];
+
+        $pista->save();
     }
 
     /**
@@ -81,6 +122,38 @@ class PistaController extends Controller
      */
     public function destroy(Pista $pista)
     {
-        //
+        try {
+            $pista->deleteOrFail();
+        }catch(\Throwable $e){
+           return redirect('/');
+        }
+        return redirect('/pista');
+
+    }
+
+    public function crearPistas(){
+        $pista = new Pista();
+
+        $pista->luz=true;
+        $pista->precioLuz=4.5;
+        $pista->tipoPista='Individual';
+
+        $pista->save();
+
+        $pista->luz=true;
+        $pista->precioLuz=9;
+        $pista->tipoPista='Dobles';
+
+        $pista->save();
+
+        $pista->luz=$request['luz']?? 0;
+        $pista->tipoPista=$request['tipoPista'];
+        $pista->cubierta=$request['cubierta']?? 0;
+        $pista->disponible=$request['disponible']?? 0;
+        $pista->precioLuz=$request['precioLuz'];
+
+        $pista->save();
+
+        return redirect('/pista/$pista->id');
     }
 }

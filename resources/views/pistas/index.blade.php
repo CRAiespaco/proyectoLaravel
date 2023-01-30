@@ -1,4 +1,4 @@
-@extends('predefinido')
+@extends ('predefinido')
 
 @section('contenido')
     <div class="album py-5 bg-light">
@@ -7,15 +7,22 @@
                 @foreach($pistas as $pista)
                     <div class="col">
                         <div class="card shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                            @if($pista->tipoPista=='Individual')
+                                <img src="/img/individual.jpg" class="bd-placeholder-img card-img-top" width="100%" height="225">
+                            @else
+                                <img src="/img/dobles.jpg" class="bd-placeholder-img card-img-top" width="100%" height="225">
+                            @endif
                             <div class="card-body">
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                        <a href="/pista/{{$pista->id}}"><button type="button" class="btn btn-sm btn-outline-primary">Más Detalles</button></a>
                                     </div>
-                                    <small class="text-muted">{{$pista->disponible}}</small>
+                                    @if($pista->disponible==true)
+                                        <small class="text-success">Disponible</small>
+                                    @else
+                                        <small class="text-danger">No disponible</small>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -24,6 +31,4 @@
             </div>
         </div>
     </div>
-
-
 @endsection
