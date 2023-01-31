@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('usuario', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->correo();
-            $table->contrasenya();
-            $table->objetivo();
-            $table->recetasTemporales();
-            $table->alergias();
+            $table->string('correo');
+            $table->string('contrasenya');
+            $table->foreignId('id_objetivo')->constrained()->cascadeOnDelete();
+            $table->foreignId('id_receta')->constrained()->cascadeOnDelete();//recetasFavoritas
+            $table->foreignId('id_ingrediente')->constrained()->cascadeOnDelete();//alergias;
             $table->timestamps();
         });
     }

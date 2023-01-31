@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('Imagen');
-            $table->foreignId('id_uvalorNutricional')->constrained();
+            $table->foreignId('id_totalNutricional')->constrained();
             $table->timestamps();
         });
     }

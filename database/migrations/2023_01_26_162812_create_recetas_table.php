@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('Imagen');
             $table->float('totalNutricional');
             $table->float('peso');
-            $table->foreignId('id_usuario')->constrained()->cascadeOnDelete();
+            $table->foreignId('id_usuario')->constrained();
             $table->boolean('Validacion');
             $table->timestamps();
         });

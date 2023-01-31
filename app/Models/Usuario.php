@@ -12,4 +12,8 @@ class Usuario extends Model
     public function objetivos(){
         return $this->hasMany(Objetivo::class);
     }
+
+    public function recetas(){
+        return $this->hasMany(Recetas::class);
+    }
 }
