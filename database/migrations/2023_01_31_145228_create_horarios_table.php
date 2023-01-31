@@ -13,14 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pistas', function (Blueprint $table) {
+        Schema::create('horarios', function (Blueprint $table) {
             $table->id();
-            $table->boolean('luz')->default(true);
-            $table->float('precioLuz',unsigned:true);
-            $table->boolean('cubierta')->default(false);
-            $table->boolean('disponible')->default(true);
-            $table->enum('tipoPista',['Individual','dobles']);
             $table->timestamps();
+            //Preguntar si horarios seria asi?
         });
     }
 
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pistas');
+        Schema::dropIfExists('horarios');
     }
 };

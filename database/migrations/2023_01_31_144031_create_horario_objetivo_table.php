@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ingrediente', function (Blueprint $table) {
+        Schema::create('horario_objetivo', function (Blueprint $table) {
             $table->id();
-            $table->nombre();
-            $table->valoracion();
-            $table->valorNutricional();
+            $table->foreignId('horario_id')->constrained();
+            $table->foreignId('objetivo_id')->constrained();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ingrediente');
+        Schema::dropIfExists('objetivo_usuario');
     }
 };
