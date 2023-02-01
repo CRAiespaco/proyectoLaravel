@@ -14,6 +14,10 @@ class Usuario extends Model
     }
 
     public function recetas(){
-        return $this->hasMany(Recetas::class);
+        return $this->hasMany(Receta::class);
+    }
+
+    public function ingredientes(){
+        return $this->hasMany(Ingrediente::class);
     }
 }

@@ -18,13 +18,13 @@ return new class extends Migration
             $table->string('nombre');
             $table->integer('valoracion');
             $table->text('pasosASeguir');
-            $table->foreignId('id_ingrediente')->constrained()->cascadeOnDelete();
+            $table->foreignId('ingrediente_id')->constrained();
             $table->enum('horario',["desayuno","comida","cena"]);
-            $table->foreignId('id_categoria')->constrained();
+            $table->foreignId('categoria_id')->constrained();
             $table->string('Imagen');
             $table->float('totalNutricional');
             $table->float('peso');
-            $table->foreignId('id_usuario')->constrained();
+            $table->foreignId('usuario_id')->constrained();
             $table->boolean('Validacion');
             $table->timestamps();
         });
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('objetivo');
+        Schema::dropIfExists('recetas');
     }
 };

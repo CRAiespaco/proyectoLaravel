@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('total_nutricions', function (Blueprint $table) {
+        Schema::create('receta_usuario', function (Blueprint $table) {
             $table->id();
-            $table->float('proteinas');
-            $table->float('hidratosDeCarbono');
-            $table->float('grasas');
-            $table->float('Kcal');
+            $table->foreignId('receta_id')->constrained();
+            $table->foreignId('usuario_id')->constrained();
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('total_nutricions');
+        Schema::dropIfExists('receta_usuario');
     }
 };
