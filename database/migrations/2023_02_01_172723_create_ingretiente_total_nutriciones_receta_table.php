@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('ingretiente_total_nutriciones_receta', function (Blueprint $table) {
             $table->id();
             $table->foreignId('ingrediente_id')->constrained();
-            $table->foreignId('total_nutriciones_idl')->constrained();
+            $table->foreignId('total_nutriciones_id')->constrained();
             $table->timestamps();
         });
     }
