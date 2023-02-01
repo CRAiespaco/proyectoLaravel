@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('horarios', function (Blueprint $table) {
+        Schema::create('ingrediente_receta', function (Blueprint $table) {
             $table->id();
-            $table->date('');
+            $table->foreignId('ingrediente_id')->constrained();
+            $table->foreignId('receta_id')->constrained();
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('horarios');
+        Schema::dropIfExists('ingrediente_receta');
     }
 };
