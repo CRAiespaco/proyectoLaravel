@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Intervalo extends Model
 {
     use HasFactory;
+
+    public function horario(){
+        return $this->belongsTo(Horario::class);
+    }
+
+    public function receta(){
+        return $this->belongsTo(Receta::class);
+    }
 }
