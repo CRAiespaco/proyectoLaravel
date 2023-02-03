@@ -9,15 +9,19 @@ class Receta extends Model
 {
     use HasFactory;
 
-    public function categorias(){
+    public function categoria(){
         return $this->belongsToMany(Categoria::class);
     }
 
-    public function ingredientes(){
+    public function ingrediente(){
         return $this->belongsToMany(Ingrediente::class);
     }
 
-    public function usuarios(){
+    public function usuario(){
         return $this->belongsTo(Usuario::class);
+    }
+
+    public function intervalo(){
+        return $this->belongsTo(Intervalo::class);
     }
 }

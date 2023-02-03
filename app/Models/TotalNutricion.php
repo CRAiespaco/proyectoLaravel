@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class TotalNutricion extends Model
 {
     use HasFactory;
+
+    public function ingrediente(){
+        return $this->hasMany(ingrediente::class);
+    }
 }

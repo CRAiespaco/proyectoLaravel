@@ -16,4 +16,8 @@ class Intervalo extends Model
     public function receta(){
         return $this->belongsTo(Receta::class);
     }
+
+    public function ingrediente(){
+        return $this->belongsTo(ingrediente::class);
+    }
 }

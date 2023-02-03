@@ -9,15 +9,15 @@ class Usuario extends Model
 {
     use HasFactory;
 
-    public function objetivos(){
+    public function objetivo(){
         return $this->hasMany(Objetivo::class);
     }
 
-    public function recetas(){
+    public function receta(){
         return $this->hasMany(Receta::class);
     }
 
-    public function ingredientes(){
+    public function ingrediente(){
         return $this->hasMany(Ingrediente::class);
     }
 }
